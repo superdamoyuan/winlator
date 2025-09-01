@@ -44,8 +44,7 @@ jobs:
       - name: 6. 构建 APK
         run: chmod +x ./gradlew && ./gradlew assembleDebug
 
-      # 6. 上传 APK 到 artifact
-      - name: Upload APK
+      - name: 7. 上传 APK
         uses: actions/upload-artifact@v4
         with:
           name: Winlator-release-apk
