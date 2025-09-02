@@ -46,6 +46,13 @@ public class WinHandler {
         this.activity = activity;
     }
 
+    public XServerDisplayActivity getActivity() {
+        return activity;
+    }
+    public boolean isInitReceived() {
+        return initReceived;
+    }
+
     private boolean sendPacket(int port) {
         try {
             int size = sendData.position();
@@ -59,6 +66,18 @@ public class WinHandler {
             return false;
         }
     }
+    public boolean sendPacket(int port, byte[] data) {
+        try {
+            DatagramPacket sendPacket = new DatagramPacket(data, data.length);
+            sendPacket.setAddress(localhost);
+            sendPacket.setPort(port);
+            socket.send(sendPacket);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
 
     public void exec(String command) {
         command = command.trim();
@@ -173,7 +192,7 @@ public class WinHandler {
         });
     }
 
-    private void addAction(Runnable action) {
+    protected void addAction(Runnable action) {
         synchronized (actions) {
             actions.add(action);
             actions.notify();

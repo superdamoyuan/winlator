@@ -58,10 +58,10 @@ public class MIDIHandler {
     }
 
     public void outputPortConnect() {
-        String selectedDevice = winHandler.activity.getPreferences().getString("midi_input_device", "auto");
+        String selectedDevice = winHandler.getActivity().getPreferences(Context.MODE_PRIVATE).getString("midi_input_device", "auto");
         if (selectedDevice.equals("none")) return;
 
-        MidiManager mm = (MidiManager)winHandler.activity.getSystemService(Context.MIDI_SERVICE);
+        MidiManager mm = (MidiManager)winHandler.getActivity().getSystemService(Context.MIDI_SERVICE);
         MidiDeviceInfo[] infos = mm.getDevices();
 
         for (MidiDeviceInfo info : infos) {
@@ -105,7 +105,7 @@ public class MIDIHandler {
     }
 
     public boolean sendShortMsg(byte command, byte channel, byte param1, byte param2) {
-        if (!winHandler.initReceived || midiInClients.isEmpty()) return false;
+        if (!winHandler.isInitReceived() || midiInClients.isEmpty()) return false;
         final ByteBuffer sendData = ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN);
         sendData.putInt(0, (byte)(command | channel));
         sendData.put(1, param1);
