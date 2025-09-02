@@ -15,11 +15,12 @@ jobs:
         run: |
           sudo apt update && sudo apt install -y libarchive-tools wget
 
-      - name: 2. 拉取源码（包含子模块）
+      - name: 2. 拉取源码
         uses: actions/checkout@v4
         with:
           ref: master-10.0 # 指定分支
-          submodules: recursive
+          lfs: true # 下载 LFS 文件
+          submodules: recursive # 拉取子模块
 
       - name: 3. 验证 gradle
         uses: gradle/wrapper-validation-action@v3
