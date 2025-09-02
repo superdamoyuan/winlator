@@ -41,6 +41,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
+      - name: 小插曲-查找输出文件路径
+        run: ls $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/android/ | grep native_handle.h
+
       - name: 6. 构建 APK
         run: chmod +x ./gradlew && ./gradlew assembleDebug
 
