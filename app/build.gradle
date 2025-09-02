@@ -12,6 +12,12 @@ android {
         versionName "7.1"
     }
 
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled true
