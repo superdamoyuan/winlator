@@ -18,7 +18,7 @@ jobs:
       - name: 2. 拉取源码（包含子模块）
         uses: actions/checkout@v4
         with:
-          ref: master # 指定分支
+          ref: master-10.0 # 指定分支
           submodules: recursive
 
       - name: 3. 验证 gradle
@@ -47,5 +47,5 @@ jobs:
       - name: 7. 上传 APK
         uses: actions/upload-artifact@v4
         with:
-          name: Winlator-release-apk
+          name: winlator-master-10.0.apk
           path: app/build/outputs/apk/debug/app-debug.apk
