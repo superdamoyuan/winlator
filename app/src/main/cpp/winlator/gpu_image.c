@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include <sys/mman.h>
 
-#include "native_handle.h"
+//#include "native_handle.h"
 
 #define HAL_PIXEL_FORMAT_BGRA_8888 5
 #define println(...) __android_log_print(ANDROID_LOG_DEBUG, "System.out", __VA_ARGS__);
